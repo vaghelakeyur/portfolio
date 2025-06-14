@@ -1,0 +1,99 @@
+body { 
+      background-color: #010a10;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    .loaderClass {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      border: 3px solid;
+      border-color: #FFF #FFF transparent transparent;
+      box-sizing: border-box;
+      animation: rotation 2s linear infinite;
+    }
+
+    .loader::after,
+    .loader::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      border: 3px solid;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+
+    .loader::after {
+      width: 45px;
+      height: 45px;
+      border-color: transparent transparent #FF3D00 #FF3D00;
+      animation: rotationBack 1.5s linear infinite;
+    }
+
+    .loader::before {
+      width: 30px;
+      height: 30px;
+      border-color: #FFF #FFF transparent transparent;
+      animation: rotation 3s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes rotationBack {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+
+   .rotating-text {
+  margin-top: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  height: 40px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  background: linear-gradient(90deg, #ff3d00, #00ffcc, #ff00ff, #ffff00);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientGlow 4s ease infinite;
+  text-shadow: 
+    0 0 5px rgba(255, 61, 0, 0.8),
+    0 0 10px rgba(0, 255, 204, 0.6),
+    0 0 15px rgba(255, 0, 255, 0.6),
+    0 0 20px rgba(255, 255, 0, 0.5);
+}
+
+.rotating-text.show {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Animate the gradient background */
+@keyframes gradientGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

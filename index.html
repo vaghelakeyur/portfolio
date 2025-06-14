@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loader with Rotating Text</title>
+    <link rel="stylesheet" href="./assets/css/loader.css" />
+  </head>
+  <body>
+    <div class="loaderClass">
+      <div class="loader"></div>
+      <div class="rotating-text" id="rotateWord">PHP</div>
+    </div>
+
+    <script>
+      const words = [
+        { text: "PHP", color: "#FF3D00" },
+        { text: "Laravel", color: "#4CAF50" },
+        { text: "React", color: "#61DAFB" },
+      ];
+
+      let index = 0;
+      const rotateElement = document.getElementById("rotateWord");
+
+      function updateText() {
+        rotateElement.classList.remove("show"); // Start fade out
+        setTimeout(() => {
+          rotateElement.textContent = words[index].text;
+          rotateElement.style.color = words[index].color;
+          rotateElement.classList.add("show"); // Fade in with new word
+          index = (index + 1) % words.length;
+        }, 300); // Wait a bit before showing new word
+      }
+
+      updateText(); // Show first word immediately
+      setInterval(updateText, 2000); // Rotate every 2s
+
+      // Redirect after 6s
+      setTimeout(() => {
+        window.location.href = "portfolio.html";
+      }, 6000);
+    </script>
+  </body>
+</html>
