@@ -2,42 +2,156 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Keyur PortFolio</title>
-    <link rel="stylesheet" href="./assets/css/loader.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3D Logo Loader</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-light: linear-gradient(
+          135deg,
+          #fdfcfb,
+          #e2d1c3
+        ); /* light mode background */
+        --bg-dark: #010a10; /* dark solid */
+      }
+
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        transition: background 0.5s ease-in-out;
+      }
+
+      body.light-mode {
+        background: var(--bg-light);
+      }
+
+      body.dark-mode {
+        background: var(--bg-dark);
+      }
+
+      .loader-wrapper {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cube-loader {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        transform-style: preserve-3d;
+        animation: spin 4s infinite linear;
+      }
+
+      .cube-face {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid #fff;
+        border-radius: 10px;
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cube-face img {
+        width: 60%;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .front {
+        transform: rotateY(0deg) translateZ(50px);
+      }
+      .back {
+        transform: rotateY(180deg) translateZ(50px);
+      }
+      .right {
+        transform: rotateY(90deg) translateZ(50px);
+      }
+      .left {
+        transform: rotateY(-90deg) translateZ(50px);
+      }
+      .top {
+        transform: rotateX(90deg) translateZ(50px);
+      }
+      .bottom {
+        transform: rotateX(-90deg) translateZ(50px);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotateX(0deg) rotateY(0deg);
+        }
+        100% {
+          transform: rotateX(360deg) rotateY(360deg);
+        }
+      }
+
+      .theme-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+    </style>
   </head>
-  <body>
-    <div class="loaderClass">
-      <div class="loader"></div>
-      <div class="rotating-text" id="rotateWord">PHP</div>
+  <body class="dark-mode">
+    <div class="loader-wrapper">
+      <div class="cube-loader">
+        <div class="cube-face front">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/2048px-Laravel.svg.png"
+            alt="Laravel Logo"
+          />
+        </div>
+        <div class="cube-face back">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+            alt="React Logo"
+          />
+        </div>
+        <div class="cube-face right">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg"
+            alt="PHP Logo"
+          />
+        </div>
+        <div class="cube-face left">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/2048px-Laravel.svg.png"
+            alt="Laravel Logo"
+          />
+        </div>
+        <div class="cube-face top">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+            alt="React Logo"
+          />
+        </div>
+        <div class="cube-face bottom">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg"
+            alt="PHP Logo"
+          />
+        </div>
+      </div>
     </div>
 
     <script>
-      const words = [
-        { text: "PHP", color: "#FF3D00" },
-        { text: "Laravel", color: "#4CAF50" },
-        { text: "React", color: "#61DAFB" },
-      ];
-
-      let index = 0;
-      const rotateElement = document.getElementById("rotateWord");
-
-      function updateText() {
-        rotateElement.classList.remove("show"); // Start fade out
-        setTimeout(() => {
-          rotateElement.textContent = words[index].text;
-          rotateElement.style.color = words[index].color;
-          rotateElement.classList.add("show"); // Fade in with new word
-          index = (index + 1) % words.length;
-        }, 300); // Wait a bit before showing new word
-      }
-
-      updateText(); // Show first word immediately
-      setInterval(updateText, 2000); // Rotate every 2s
-
-      // Redirect after 6s
       setTimeout(() => {
         window.location.href = "portfolio.html";
-      }, 6000);
+      }, 3000);
     </script>
   </body>
 </html>
